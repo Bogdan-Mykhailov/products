@@ -1,12 +1,12 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {Container, Grid, Pagination, Typography} from '@mui/material';
 import axios from 'axios';
 import {Product} from "@/types/Product";
 
-const Home: React.FC = () => {
+const CatalogContent: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
@@ -72,6 +72,14 @@ const Home: React.FC = () => {
         onChange={handlePageChange}
       />
     </Container>
+  );
+};
+
+const Home: React.FC = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CatalogContent />
+    </Suspense>
   );
 };
 
