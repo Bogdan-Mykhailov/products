@@ -51,40 +51,42 @@ const ProductPage: FC<Props> = async ({params}) => {
   };
 
   return (
-    <Container>
-      <Back/>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 100,
-        flexDirection: 'column'
-      }}>
-        <Typography
-          mt={5}
-          align='center'
-          variant="h3"
-          color='primary'
-          gutterBottom
-        >
-          {name}
-        </Typography>
+      <div>
+        <Back />
+        <Container>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 100,
+            flexDirection: 'column'
+          }}>
+            <Typography
+              mt={5}
+              align='center'
+              variant="h3"
+              color='primary'
+              gutterBottom
+            >
+              {name}
+            </Typography>
 
-        <Typography align='center' variant='h5'>
-          <span style={{fontWeight: 700}}>Price:</span> {price}$
-        </Typography>
-        <Typography
-          mt={2}
-          align='center'
-          variant='h6'
-          color="text.secondary"
-        >
-          {description}
-        </Typography>
+            <Typography align='center' variant='h5'>
+              <span style={{fontWeight: 700}}>Price:</span> {price}$
+            </Typography>
+            <Typography
+              mt={2}
+              align='center'
+              variant='h6'
+              color="text.secondary"
+            >
+              {description}
+            </Typography>
+          </div>
+          <script type="application/ld+json">
+            {JSON.stringify(productJsonLd)}
+          </script>
+        </Container>
       </div>
-      <script type="application/ld+json">
-        {JSON.stringify(productJsonLd)}
-      </script>
-    </Container>
   );
 };
 

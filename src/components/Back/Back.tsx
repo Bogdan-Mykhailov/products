@@ -1,6 +1,6 @@
 'use client'
 import {FC} from 'react';
-import {Button} from "@mui/material";
+import {IconButton} from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Back: FC = () => {
@@ -9,8 +9,11 @@ export const Back: FC = () => {
   };
 
   return (
-    <Button style={{ marginTop: 25}} onClick={handleClick}>
+    <IconButton
+      color="primary"
+      onClick={handleClick}
+      style={{ margin: "15px 25px" }}>
       <ArrowBackIcon/>
-    </Button>
+    </IconButton>
   );
 };
