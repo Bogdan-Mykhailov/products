@@ -1,14 +1,14 @@
 # Products Catalog Application
 
-<a href='https://products-nt.vercel.app/' rel='nofollow'>
+<a target='_blank' href='https://products-nt.vercel.app/' rel='nofollow'>
 <img src="https://img.shields.io/badge/Product_catalog_link-4e93e6?style=for-the-badge&logo=todo&logoColor=black" alt="Product_catalog">
 </a>
 
-<a href='https://products-nt.vercel.app/sitemap.xml' rel='nofollow'>
+<a target='_blank' href='https://products-nt.vercel.app/sitemap.xml' rel='nofollow'>
 <img src="https://img.shields.io/badge/sitemap.xml_link-4e93e6?style=for-the-badge&logo=todo&logoColor=black" alt="sitemap">
 </a>
 
-<a href='https://products-nt.vercel.app/sitemap-0.xml' rel='nofollow'>
+<a target='_blank' href='https://products-nt.vercel.app/sitemap-0.xml' rel='nofollow'>
 <img src="https://img.shields.io/badge/sitemap_0.xml_link-4e93e6?style=for-the-badge&logo=todo&logoColor=black" alt="sitemap-0">
 </a>
 
