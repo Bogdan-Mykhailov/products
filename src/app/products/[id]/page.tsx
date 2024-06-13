@@ -1,11 +1,11 @@
-import React from "react";
+import React, {FC} from "react";
 import axios from "axios";
 import {Container, Typography} from "@mui/material";
 import products from "@/data/Products";
 import {Product} from "@/types/Product";
 import {Back} from "@/components/Back/Back";
 
-interface Params {
+interface Props {
   params: {
     id: string;
   };
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({params}: Params) {
+export async function generateMetadata({params}: Props) {
   const {id} = params;
   const res = await axios.get(`https://products-nt.vercel.app/api/products/${id}`);
   const product: Product = res.data;
@@ -28,7 +28,7 @@ export async function generateMetadata({params}: Params) {
   };
 }
 
-const ProductPage = async ({params}: Params) => {
+const ProductPage: FC<Props> = async ({params}) => {
   const {id} = params;
   const res = await axios.get(`https://products-nt.vercel.app/api/products/${id}`);
   const product: Product = res.data;
@@ -52,11 +52,13 @@ const ProductPage = async ({params}: Params) => {
 
   return (
     <Container>
-      <Back />
-      <div style={{display: 'flex',
+      <Back/>
+      <div style={{
+        display: 'flex',
         justifyContent: 'center',
         marginTop: 100,
-      flexDirection: 'column'}}>
+        flexDirection: 'column'
+      }}>
         <Typography
           mt={5}
           align='center'
