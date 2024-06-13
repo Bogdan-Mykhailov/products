@@ -1,6 +1,6 @@
 # Products Catalog Application
 
-This is a simple product catalog application built with Next.js 13.4+ and Material-UI (MUI). The application features a product catalog with pagination, individual product pages, and a dynamically generated sitemap. It uses server-side rendering (SSR) and static site generation (SSG) for optimal performance.
+This is a simple product catalog application built with Next.js 14 and Material-UI (MUI). The application features a product catalog with pagination, individual product pages, and a dynamically generated sitemap. It uses server-side rendering (SSR) and static site generation (SSG) for optimal performance.
 
 ![Screenshot 2024-06-13 at 11 53 27](https://github.com/Bogdan-Mykhailov/products/assets/91826635/e2e482e5-9e5f-4d22-b964-936d37a08670)
 
