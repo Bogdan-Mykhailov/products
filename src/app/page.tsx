@@ -1,20 +1,22 @@
 'use client';
-
 import React, {Suspense, useEffect, useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
-import {Container, Grid, Pagination, Typography} from '@mui/material';
+import {CircularProgress, Container, Pagination, Typography} from '@mui/material';
 import axios from 'axios';
 import {Product} from "@/types/Product";
+import {ProductsWrapper} from "@/components/ProductsWrapper/ProductsWrapper";
 
 const CatalogContent: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const limit = 12;
+  const limit = 9;
 
   useEffect(() => {
+
     const fetchProducts = async () => {
       const currentPage = parseInt(searchParams.get('page') || '1', 10);
       setPage(currentPage);
@@ -22,6 +24,7 @@ const CatalogContent: React.FC = () => {
         const res = await axios.get(`/api/products?page=${currentPage}&limit=${limit}`);
         setProducts(res.data.products);
         setTotal(res.data.total);
+        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
@@ -34,43 +37,41 @@ const CatalogContent: React.FC = () => {
     router.push(`/?page=${value}`);
   };
 
+  if (isLoading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        <CircularProgress/>
+      </div>
+    )
+  }
+
   return (
-    <Container>
+    <Container sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
       <Typography
-        variant="h4"
         gutterBottom
+        variant="h4"
+        align='center'
+        marginY={4}
+        fontWeight={600}
       >
         Product Catalog
       </Typography>
 
-      <Grid container spacing={4}>
-        {products.map(({
-                         id,
-                         name,
-                         description,
-                         price
-                       }) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            key={id}
-          >
-            <div>
-              <Typography variant="h6">{name}</Typography>
-              <Typography>{description}</Typography>
-              <Typography>${price}</Typography>
-            </div>
-          </Grid>
-        ))}
-      </Grid>
+      <ProductsWrapper products={products}/>
 
-      <Pagination
-        count={Math.ceil(total / limit)}
-        page={page}
-        onChange={handlePageChange}
-      />
+      <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+        <Pagination
+          sx={{marginTop: 4}}
+          count={Math.ceil(total / limit)}
+          page={page}
+          onChange={handlePageChange}
+        />
+      </div>
     </Container>
   );
 };
@@ -78,7 +79,7 @@ const CatalogContent: React.FC = () => {
 const Home: React.FC = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <CatalogContent />
+      <CatalogContent/>
     </Suspense>
   );
 };

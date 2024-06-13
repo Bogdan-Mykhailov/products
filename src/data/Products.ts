@@ -1,6 +1,6 @@
 import {Product} from "@/types/Product";
 
-const products: Product[] = Array.from({length: 48}, (_, i) => ({
+const products: Product[] = Array.from({length: 25}, (_, i) => ({
   id: i + 1,
   name: `Product ${i + 1}`,
   description: `Description for product ${i + 1}`,
