@@ -1,17 +1,31 @@
 'use client'
-import {ThemeProvider} from '@mui/material/styles';
+import React, { ReactNode, useState } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import {theme} from "@/theme";
-import {ReactNode} from "react";
+import { lightTheme, darkTheme } from '@/theme';
+import ThemeSwitchButton from "@/components/ThemeSwitcher/ThemeSwitcher";
 
-const RootLayout = ({children}: { children: ReactNode }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const RootLayout = ({ children }: Props) => {
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
+
+  const toggleTheme = () => {
+    setThemeMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
+  const theme = themeMode === 'dark' ? darkTheme : lightTheme;
+
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <html lang="en">
-        <body>
-          <CssBaseline/>
-          {children}
-        </body>
+      <body>
+      <ThemeSwitchButton currentThemeMode={themeMode} onChangeTheme={toggleTheme} />
+      {children}
+      </body>
       </html>
     </ThemeProvider>
   );
